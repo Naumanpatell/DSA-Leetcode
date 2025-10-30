@@ -1,0 +1,38 @@
+{
+  // Disable ghost text inline suggestions
+  "editor.inlineSuggest.enabled": false,
+  // Turn off popup suggestions while typing
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  // Do not trigger suggestions on dot/quotes etc.
+  "editor.suggestOnTriggerCharacters": false,
+  // Disable tab-to-complete suggestions
+  "editor.tabCompletion": "off",
+  // Hide parameter hints/signature help popups
+  "editor.parameterHints.enabled": false,
+  // Optional: hide inlay hints like parameter names
+  "editor.inlayHints.enabled": "off",
+  // If Copilot is installed, disable it for this workspace
+  "github.copilot.enable": {
+    "*": false
+  }
+}
+{
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "strings": "off",
+    "other": "off"
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.inlineSuggest.enabled": false,
+  "editor.parameterHints.enabled": false,
+  "editor.snippetSuggestions": "none",
+  "github.copilot.inlineSuggest.enable": false,
+  "github.copilot.enable": {
+    "*": false
+  }
+}
+
