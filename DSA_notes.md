@@ -453,10 +453,142 @@ Time complexity -> Worst Case -> Same as bubble and selection sort -> O(N^2)
 
 ```
 
-### Merge sort
+## Stack
+
+- A **Stack** is a data structure used to store and manage data in a specific order.
+
+### LIFO: Last In, First Out
+
+- The element that is inserted **last** is removed **first**.
+- Example: A stack of plates. The plate placed on the top last will be the first to be removed.
+
+### Operations on Stack
+
+| Operation | Description | Python Equivalent |
+| --- | --- | --- |
+| push(x) | Insert element into stack | `append(x)` |
+| pop() | Remove the top element | `pop()` |
+| peek() or top() | View the top element without removing it | `stack[-1]` |
+| isEmpty() | Check if the stack is empty | `len(stack) == 0` |
+
+### Stack in Python Using List
 
 ```python
-nums = [2,1,4,5,3,5]
+stack = []  # creating an empty stack
 
-def Mergesort(nums):
+# Push elements
+stack.append(10)
+stack.append(20)
+stack.append(30)
+
+# Pop element
+removed = stack.pop()
+
+# Peek at top element
+top = stack[-1]
+
+# Check if empty
+empty = (len(stack) == 0)
+
+print("Removed element:", removed)
+print("Current top element:", top)
+print("Is stack empty?", empty)ddd
+```
+
+### Stack Using Class
+
+```python
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, value):
+        self.stack.append(value)
+
+    def pop(self):
+        if self.isEmpty():
+            return "Stack is empty"
+        return self.stack.pop()
+
+    def peek(self):
+        if self.isEmpty():
+            return "Stack is empty"
+        return self.stack[-1]
+
+    def isEmpty(self):
+        return len(self.stack) == 0
+```
+
+### Why Stack Is Useful
+
+- Stacks are used in many applications such as:
+    - Reversing data
+    - Checking balanced parentheses
+    - Function call execution (call stack)
+    - Undo / Redo operations in editors
+    - Expression evaluationd
+    
+- Check Balanced Parentheses
+
+```python
+# Given a string containing brackets, determine if the brackets are properly balanced.
+
+def isBalanced(s):
+    stack = []
+    pairs = {')': '(', ']': '[', '}': '{'}
+
+    for char in s:
+        if char in pairs.values():
+            stack.append(char) # Push opening brackets into stack.
+        elif char in pairs.keys():
+            if not stack or stack.pop() != pairs[char]: #When a closing bracket is found, check if it matches the top of stack.
+                return False
+    return len(stack) == 0
+
+print(isBalanced("{[()]}"))  # True
+print(isBalanced("([)]"))    # False
+```
+
+---
+
+- Reverse a String Using Stack
+
+```python
+def reverseString(s):
+    stack = []
+    for char in s:
+        stack.append(char) #Push every character into the stack.
+
+    reversed_s = ""
+    while stack:
+        reversed_s += stack.pop() #Pop characters one-by-one to build the reversed string.
+    return reversed_s
+
+print(reverseString("hello"))  # olleh
+
+```
+
+---
+
+- Minimum Element in a Stack (Efficient Approach)
+    - Use an additional stack to track minimum values.
+
+```python
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+
+    def push(self, val):
+        self.stack.append(val)
+        if not self.minStack or val <= self.minStack[-1]:
+            self.minStack.append(val)
+
+    def pop(self):
+        value = self.stack.pop()
+        if value == self.minStack[-1]:
+            self.minStack.pop()
+
+    def getMin(self):
+        return self.minStack[-1]
 ```
