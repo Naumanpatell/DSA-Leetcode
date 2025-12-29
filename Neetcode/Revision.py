@@ -105,4 +105,55 @@ def most_water(heights):
         else:
             i += 1
     return max_area
-#
+#<------------------------------ 29 December 2025-------------------------------->#
+def containsduplicates(nums):   
+    seen = set()
+    for num in nums:
+        if num in seen:
+            return True
+        seen.add(num)
+    return False
+def ValidAnagram(s,t):
+    if len(s) == len(t):
+        return False
+    count_s = {}
+    count_t = {}
+    for char in s:
+        count_s[char] = count_s.get(char,0) + 1
+    for char in t:
+        count_t[char] = count_t.get(char,0) + 1
+    return count_s == count_t
+def groupanagram(strs):
+    anagram = {}
+    for word in strs:
+        s_count = [0]*26
+        for char in word:
+            s_count[ord(char) - ord("a")] += 1
+        key = tuple(s_count)
+        if key not in anagram:
+            anagram[key] = []
+        anagram[key].append(word)
+    return list(anagram.values())
+def palindrome(s):
+    s = ''.join(char.lower() for char in s if char.isalnum())
+    #return s == s[::-1] space complexity is O(n)
+    i,j = 0,len(s)-1
+    while i<j:
+        if s[i] != s[j]:
+            return False
+        i+=1
+        j-=1
+    return True
+def containerwithmsotwater(height):
+    max_area = 0
+    i,j = 0, len(height)-1
+    while i<j:
+        height = min(height[i], height[j])
+        width = j-i
+        area = height*width
+        max_area = max(max_area,area)
+        if height[i]>height[j]:
+            j-=1
+        else:
+            i+=1
+    return max_area
