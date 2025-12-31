@@ -157,3 +157,63 @@ def containerwithmsotwater(height):
         else:
             i+=1
     return max_area
+#<------------------------------ 31 December 2025-------------------------------->#
+def threeSum(nums):
+    Output = []
+    nums = nums.sort()
+    for n in range(len(nums)):
+        if n > 0 and nums[n] == nums[n+1]:
+            pass
+        i,j = i+1,len(nums)-1
+        while i < j:
+            sum = nums[i]+nums[j]+nums[n]
+            if sum == 0:
+                Output.append([nums[i],nums[j],nums[n]])
+                i+=1
+                j-=1
+                while i<j and nums[j] == nums[j+1]:
+                    j-=1
+                while i<j and  nums[i] == nums[i-1]:
+                    i+=1
+            elif sum > 0:
+                j-=1
+            else:
+                i+=1
+    return Output
+def besttimetobutandsell(prices):
+    max_profit = 0 
+    min_price = float('inf')
+    for price in prices:
+        if price < min_price:
+            price = min_price
+        else:
+            profit = price - min_price
+            max_profit = max(max_profit,profit)
+    return max_profit
+def LSSwithoutrepeatingchar(s):
+    seen = set()
+    i = 0
+    longest = 0 
+    for j in range(len(s)-1):
+        while s[j] in seen:
+            seen.remove(s[j])
+            i += 1
+        seen.add(s[j])
+        longest = max(longest,j-i+1)
+    return longest
+def stringpermutation(s1,s2):
+    if len(s1) > len(s2):
+        return False
+    counts1 = [0]*26
+    counts2 = [0]*26
+    for char in counts1:
+        counts1[ord(char) - ord('a')] += 1
+    for char in counts2:
+        counts2[ord(char) - ord('a')] += 1
+
+    for j in range(len(s2) - len(s1)):
+        if counts1 == counts2
+            return True
+        counts2[ord(s2[j]) - ord('a')] -= 1
+        counts2[ord(s2[j + len(s1)]) - ord('a')] += 1
+    return counts1 == counts2
